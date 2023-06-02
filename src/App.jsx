@@ -1,14 +1,9 @@
 import React from "react";
 import "./App.css";
-import { Avatar } from "./components/Avatar";
+import { Example1 } from "./examples/Example1";
 
 function App() {
-  return (
-    <>
-      <h1 style={{ color: "#f00" }}>hello world</h1>
-      <Avatar />
-    </>
-  );
+  return <Example1 />;
 }
 
 export default App;
