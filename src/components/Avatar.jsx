@@ -7,7 +7,7 @@ const user = {
 
 export function Avatar() {
   return (
-    <div>
+    <div className="avatar">
       <h3>{user.name}</h3>
       <img src={user.imageUrl} alt={user.name} />
     </div>
