@@ -2,7 +2,7 @@
  * use case of useEffect and useCallback
  */
 
-import React, { useDebugValue, useDeferredValue, useState } from "react";
+import React, { useDeferredValue, useState } from "react";
 
 export function Example6() {
 
