@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import { Example4 } from "./examples/Example4";
+import { Example5 } from "./examples/Example5";
 
 function App() {
-  return <Example4 />;
+  return <Example5 />;
 }
 
 export default App;
