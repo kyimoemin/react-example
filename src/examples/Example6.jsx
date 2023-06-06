@@ -14,6 +14,7 @@ export function Example6() {
     return n * factorial(n - 1);
   }
 
+
   return <div>
     <p >number: {count}</p>
     <p>factorial: {factorial(deferredCount)}</p>
