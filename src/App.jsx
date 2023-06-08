@@ -1,11 +1,15 @@
 import React from "react";
 import "./App.css";
-import { ContextProvider, Example11 } from "./examples/Example11";
+import { Example12 } from "./examples/Example12";
+import { StoreProvider } from "./redux/store";
+import { ContextProvider } from "./context/ValueContext";
 
 function App() {
   return (
     <ContextProvider>
-      <Example11 />
+      <StoreProvider>
+        <Example12 />
+      </StoreProvider>
     </ContextProvider>
   );
 }
