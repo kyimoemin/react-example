@@ -8,14 +8,6 @@ const context = createContext({
   }
 });
 
-export function ContextProvider({ children }) {
-  const [state, setSate] = useState("");
-
-  return <context.Provider value={{ value: state, setValue: (value) => setSate(value) }}>
-    {children}
-  </context.Provider>;
-}
-
 function useValue() {
   const { value } = useContext(context);
   return value;
@@ -23,6 +15,14 @@ function useValue() {
 
 const useValueContext = () => useContext(context);
 
+
+export function ContextProvider({ children }) {
+  const [state, setSate] = useState("");
+
+  return <context.Provider value={{ value: state, setValue: (value) => setSate(value) }}>
+    {children}
+  </context.Provider>;
+}
 
 export function Example11() {
 

@@ -9,7 +9,7 @@ export function Example10() {
 }
 
 function useIsOnline() {
-  return useSyncExternalStore(subscribe, getSnapshot);
+  return useSyncExternalStore(subscribe, listener);
 }
 
 function subscribe(callback) {
@@ -21,6 +21,6 @@ function subscribe(callback) {
   };
 }
 
-function getSnapshot() {
+function listener() {
   return navigator.onLine;
 }
