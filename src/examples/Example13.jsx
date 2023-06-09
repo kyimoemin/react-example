@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunk } from '../redux/thunk';
+import { getUser } from "../redux/thunk/user";
 
 export function Example13() {
 
   const { data, loading, error } = useSelector(state => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(thunk.user.getUser());
+    dispatch(getUser());
   }, []);
 
   if (loading) return <h1>Loading....</h1>;
