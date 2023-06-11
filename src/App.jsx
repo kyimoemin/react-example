@@ -3,15 +3,23 @@ import "./App.css";
 import { Example13 } from "./examples/Example13";
 import { StoreProvider } from "./redux/store";
 import { ContextProvider } from "./context/ValueContext";
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Example14 } from "./examples/Example14";
+import { ReactQueryDevtools } from 'react-query/devtools';
 
+const client = new QueryClient({
+});
 
 function App() {
   return (
-    <ContextProvider>
-      <StoreProvider>
-        <Example13 />
-      </StoreProvider>
-    </ContextProvider>
+    <QueryClientProvider client={client}>
+      <ContextProvider>
+        <StoreProvider>
+          <Example14 />
+          <ReactQueryDevtools />
+        </StoreProvider>
+      </ContextProvider>
+    </QueryClientProvider>
   );
 }
 
