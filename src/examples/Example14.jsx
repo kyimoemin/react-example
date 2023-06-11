@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 
 export function Example14() {
@@ -23,11 +23,13 @@ function AddPost() {
 
   const { register, handleSubmit, reset } = useForm();
   const { mutate, isSuccess, error } = useAddTodo();
+  const client = useQueryClient();
 
   function submit(data) {
     mutate({ ...data, userId: 1 }, {
       onSuccess(data) {
         reset();
+        client.invalidateQueries(["posts"]);
       }
     });
   }
@@ -45,7 +47,7 @@ function AddPost() {
 
 function useTodo(todoId) {
   return useQuery({
-    queryKey: ["user", todoId],
+    queryKey: ["posts", todoId],
     queryFn: () => fetch(`https://jsonplaceholder.typicode.com/posts/${todoId}`).then((response) => response.json() //{throw new Error("testing error")}
     )
   });
