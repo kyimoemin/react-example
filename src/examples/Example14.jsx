@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useQuery } from "react-query";
+import { useForm } from 'react-hook-form';
+import { useMutation, useQuery } from "react-query";
 
 
 export function Example14() {
@@ -14,13 +15,51 @@ export function Example14() {
     <pre>
       {JSON.stringify(data, null, 2)}
     </pre>
+    <AddPost />
   </div>;
+}
+
+function AddPost() {
+
+  const { register, handleSubmit, reset } = useForm();
+  const { mutate, isSuccess, error } = useAddTodo();
+
+  function submit(data) {
+    mutate({ ...data, userId: 1 }, {
+      onSuccess(data) {
+        reset();
+      }
+    });
+  }
+
+
+  if (isSuccess) return <p>Post added successfully</p>;
+  if (error) return <p>{error?.message || "Something went wrong"}</p>;
+
+  return <form onSubmit={handleSubmit(submit)} >
+    <input {...register("title")} placeholder='title' />
+    <input {...register("body")} placeholder='body' />
+    <input type="submit" />
+  </form>;
 }
 
 function useTodo(todoId) {
   return useQuery({
     queryKey: ["user", todoId],
-    queryFn: () => fetch(`https://jsonplaceholder.typicode.com/todos/${todoId}`).then((response) => response.json() //{throw new Error("testing error")}
+    queryFn: () => fetch(`https://jsonplaceholder.typicode.com/posts/${todoId}`).then((response) => response.json() //{throw new Error("testing error")}
     )
+  });
+}
+
+function useAddTodo() {
+  return useMutation({
+    mutationFn: (data) => fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
   });
 }
